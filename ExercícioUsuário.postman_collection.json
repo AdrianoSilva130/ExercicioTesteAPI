@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "06cc374e-b057-4904-ac4d-afc18e4f5113",
+		"name": "ExercícioUsuário",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41988304",
+		"_collection_link": "https://star99-1083.postman.co/workspace/bd67809b-b088-4959-89d4-7c68ba701c30/collection/41988304-06cc374e-b057-4904-ac4d-afc18e4f5113?action=share&source=collection_link&creator=41988304"
+	},
+	"item": [
+		{
+			"name": "Cadastrar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Validar cadastro\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Cadastro realizado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Adriano Araujo\",\r\n  \"email\": \"Adriano.qa@ebac.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{EXE}}usuarios",
+					"host": [
+						"{{EXE}}usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar usuários",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{EXE}}usuarios",
+					"host": [
+						"{{EXE}}usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar usuário pelo ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Deve buscar usuario\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Adriano Silva\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{EXE}}usuarios/cV9d0quW7eNoXcwZ",
+					"host": [
+						"{{EXE}}usuarios"
+					],
+					"path": [
+						"cV9d0quW7eNoXcwZ"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Alteração com sucesso\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Registro alterado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"nome\": \"Adriano Silva\",\r\n            \"email\": \"Adriano@ebac.com.br\",\r\n            \"password\": \"teste123\",\r\n            \"administrador\": \"true\"\r\n            \r\n        }\r\n            ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{EXE}}usuarios/cV9d0quW7eNoXcwZ",
+					"host": [
+						"{{EXE}}usuarios"
+					],
+					"path": [
+						"cV9d0quW7eNoXcwZ"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Registro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code é 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Não deve encontrar um registro\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Nenhum registro excluído\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{EXE}}usuarios/qe2HHKKUuzbZ37Sd",
+					"host": [
+						"{{EXE}}usuarios"
+					],
+					"path": [
+						"qe2HHKKUuzbZ37Sd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
